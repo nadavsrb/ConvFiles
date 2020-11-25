@@ -32,7 +32,7 @@ void createFileFromFile(const char* inFile, const char* outFile,
         //put them in FileChar in the sequence we have read them.
         FileChar fc = {inCharBuffer[0], inCharBuffer[1]};
 
-        for(int seq = 0; seq <= numFuncs; ++seq) {
+        for(int seq = 0; seq < numFuncs; ++seq) {
             fc = handleFileChar[seq](fc);
         }
 
@@ -45,7 +45,10 @@ void createFileFromFile(const char* inFile, const char* outFile,
 }
 
 int main(int argc, char const *argv[])
-{
-    printf("hi");
+{   
+    //create a copy of the file
+    createFileFromFile("testingFiles/unix_input-utf-16_swap.txt",
+    "result/unix_input-utf-16_swap-copy.txt",NULL,0);
+
     return 0;
 }
