@@ -1,16 +1,47 @@
 #include <stdio.h>
 
-//utf-16 is using 2 bytes to store one char.
-#define CHAR_SIZE_IN_FILE 2
+//in utf-16 we have 2 bytes to represent char.
+#define NUM_BYTES_CHAR 2
+
+//we only read to one buffer
+#define NUM_BUFFERS 1
+
+//in utf-16 we have 2 bytes to represent char.
+typedef struct 
+{
+    unsigned char firstByte;
+    unsigned char secondByte;
+}FileChar;
+
 
 void createFileFromFile(const char* inFile, const char* outFile,
-     unsigned char* (*handleChar)(const char* outFile, unsigned char c[CHAR_SIZE_IN_FILE])){
-         
-    unsigned char charBuffer[CHAR_SIZE_IN_FILE];
+        FileChar (**handleFileChar)(FileChar fc), int numFuncs){
 
-    FILE *f = fopen("test.bin","rb");  // r for read, b for binary
+    FILE *in = fopen(inFile,"rb");  // r for read, b for binary
+    FILE *out = fopen(outFile,"wb");  // w for write, b for binary
 
-    fread(charBuffer,sizeof(charBuffer),1,f);
+    for(;;){
+        unsigned char inCharBuffer[NUM_BYTES_CHAR];
+        int buffersRead = fread(inCharBuffer, sizeof(inCharBuffer), NUM_BUFFERS, in);
+
+        if(buffersRead != NUM_BUFFERS){
+            break;
+        }
+
+        //we are taking the fist and second byte we read and
+        //put them in FileChar in the sequence we have read them.
+        FileChar fc = {inCharBuffer[0], inCharBuffer[1]};
+
+        for(int seq = 0; seq <= numFuncs; ++seq) {
+            fc = handleFileChar[seq](fc);
+        }
+
+        unsigned char outCharBuffer[] = {fc.firstByte, fc.secondByte};
+        fwrite(outCharBuffer, sizeof(outCharBuffer), NUM_BUFFERS, out);
+    }
+
+    fclose(in);
+    fclose(out);
 }
 
 int main(int argc, char const *argv[])
