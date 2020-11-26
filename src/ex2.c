@@ -211,7 +211,7 @@ OutFileCharArray convertBigEndianOs(Os src, Os dest, const InFileCharArray* oldC
     if(eolSrcLength == 0) {
          endCheck = startCheck;
     }
-printf("....................%d,%d\n",eolSrcLength,eolDestLength);////////////
+
     while(endCheck < oldChars->length) {
         Bool isNeedConv = True;
 
@@ -226,14 +226,14 @@ printf("....................%d,%d\n",eolSrcLength,eolDestLength);////////////
                  != eolSrcChars[index].firstByte) ||
                 (oldChars->fCArr[startCheck + index].secondByte
                  != eolSrcChars[index].secondByte)) {
-printf("why???????, %d, %d, %d\n", (oldChars->fCArr[startCheck + index].isEOF), (oldChars->fCArr[startCheck + index].firstByte != eolSrcChars[index].firstByte), (oldChars->fCArr[startCheck + index].secondByte != eolSrcChars[index].secondByte));////
+
                     isNeedConv = False;
                     break;
                 }
         }
 
         if(isNeedConv){
-printf("yay!!!!!!!!!!!!!!!!!!!!!!!!!!\n");///////////
+
             for(int index = 0; index < eolDestLength; ++index) {
                 newChars.fCArr[newChars.length] = eolDestChars[index];
                 ++newChars.length;
@@ -293,8 +293,7 @@ OutFileCharArray convFileOsEOL(Os src, Os dest, FILE *in){
 
     OutFileCharArray outChars;
     outChars.length = 0;
-printf("1: %d,%d\n",inChars.length, outChars.length);///////////////////////////
-printf("isSrcInBigEndian: %d\n", isSrcInBigEndian);/////////////
+
     if(!isFileEndianWasCalculated) {
         isSrcInBigEndian = isFileBigEndian(&lastChar);
         isFileEndianWasCalculated = True;
@@ -314,8 +313,6 @@ printf("isSrcInBigEndian: %d\n", isSrcInBigEndian);/////////////
         }
     }
 
-printf("2: %d,%d\n",inChars.length, outChars.length);///////////////////////////////
-printf("2: %#04x|%#04x,,,,%#04x|%#04x\n",inChars.fCArr[0].firstByte, inChars.fCArr[0].secondByte, outChars.fCArr[0].firstByte, outChars.fCArr[0].secondByte);///////////////////////////////
     return outChars;
 }
 
