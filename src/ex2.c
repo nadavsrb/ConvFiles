@@ -383,6 +383,8 @@ int main(int argc, char const *argv[])
             com.srcFileOs = MAC;
         }else if(strcmp(argv[indexArg], "-win") == 0) {
             com.srcFileOs = WIN;
+        } else{
+            return 1;
         }
 
         ++indexArg;
@@ -393,6 +395,8 @@ int main(int argc, char const *argv[])
             com.destFileOs = MAC;
         }else if(strcmp(argv[indexArg], "-win") == 0) {
             com.destFileOs = WIN;
+        } else{
+            return 1;
         }
 
         ++indexArg;
@@ -402,6 +406,8 @@ int main(int argc, char const *argv[])
         //in default the -keep flag is used.
         if(strcmp(argv[indexArg], "-swap") == 0){
             com.isSwap = True;
+        } else if(strcmp(argv[indexArg], "-keep") != 0){
+            return 1;
         }
     }
 
