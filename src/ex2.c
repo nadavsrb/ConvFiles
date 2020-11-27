@@ -364,7 +364,7 @@ int main(int argc, char const *argv[])
     int indexArg = 1;
     --argc;
 
-    if(argc != 2 || argc != 4 || argc != 5) {
+    if(argc != 2 && argc != 4 && argc != 5) {
         return 1;
     }
 
