@@ -359,7 +359,7 @@ void createFileFromFile(const char* inFile, const char* outFile,
     fclose(out);
 }
 
-int main(int argc, char const *argv[])
+int start(int argc, char const *argv[]) //foe testing name should be change later to main.
 {   
     int indexArg = 1;
     --argc;
