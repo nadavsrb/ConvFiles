@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 //in utf-16 we have 2 bytes to represent char.
 #define NUM_BYTES_CHAR 2
@@ -334,6 +335,10 @@ void createFileFromFile(const char* inFile, const char* outFile,
         OutFileCharArray (*handleFileChars)(FILE *in, Commaned* com),Commaned* com){
 
     FILE *in = fopen(inFile,"rb");  // r for read, b for binary
+    if(in == NULL) { //if src file doesn't exists.
+        return;
+    }
+
     FILE *out = fopen(outFile,"wb");  // w for write, b for binary
 
     for(;;){
@@ -356,10 +361,52 @@ void createFileFromFile(const char* inFile, const char* outFile,
 
 int main(int argc, char const *argv[])
 {   
-    Commaned com = {WIN, MAC, True};
-    //create a copy of the file
-    createFileFromFile("testingFiles/win_input-utf-16_swap.txt",
-    "result/mac_input-utf-16_keep-copy.txt", &convFileChars, &com);
+    int indexArg = 1;
+    --argc;
+
+    if(argc != 2 || argc != 4 || argc != 5) {
+        return 1;
+    }
+
+    Commaned com = {NON, NON, False};
+
+    const char* srcPath = argv[indexArg];
+    ++indexArg;
+
+    const char* destPath = argv[indexArg];
+    ++indexArg;
+
+    if(argc >= 4){
+        if(strcmp(argv[indexArg], "-unix") == 0) {
+            com.srcFileOs = UNIX;
+        }else if(strcmp(argv[indexArg], "-mac") == 0){
+            com.srcFileOs = MAC;
+        }else if(strcmp(argv[indexArg], "-win") == 0) {
+            com.srcFileOs = WIN;
+        }
+
+        ++indexArg;
+
+        if(strcmp(argv[indexArg], "-unix") == 0) {
+            com.destFileOs = UNIX;
+        }else if(strcmp(argv[indexArg], "-mac") == 0){
+            com.destFileOs = MAC;
+        }else if(strcmp(argv[indexArg], "-win") == 0) {
+            com.destFileOs = WIN;
+        }
+
+        ++indexArg;
+    }
+    
+    if(argc == 5){
+        //in default the -keep flag is used.
+        if(strcmp(argv[indexArg], "-swap") == 0){
+            com.isSwap = True;
+        }
+    }
+
+    //creates the needed file
+    createFileFromFile(srcPath, destPath, &convFileChars, &com);
 
     return 0;
 }
