@@ -594,7 +594,7 @@ void createFileFromFile(const char *inFile, const char *outFile,
  * @param argv the input's args.
  * @return int if inputs valid return 0, else return 1.
  */
-int start(int argc, char const *argv[]) {
+int main(int argc, char const *argv[]) {
   // Notice! the first arg from the terminal is
   // the .out file this info doesn't metter
   // to us so we initialize the args to not include
