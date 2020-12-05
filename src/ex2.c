@@ -1,3 +1,5 @@
+// 213056153 Nadav Sharabi
+
 #include <stdio.h>
 #include <string.h>
 
@@ -399,7 +401,7 @@ OutFileCharArray convFileOsEOL(Os src, Os dest, FILE *in) {
   // we will do is to save the last char we read from src
   // in the lastChar and if it's a char we didn't know what to do
   // with it (so we didn't put it into the in buffer) we would
-  // remmeber to add it to the next time we would read from
+  // remember to add it to the next time we would read from
   // the src file. we start with default initialize that
   // don't means much.
   // (Notice! the only char that depends on the next char is \r
@@ -592,7 +594,7 @@ void createFileFromFile(const char *inFile, const char *outFile,
  * @param argv the input's args.
  * @return int if inputs valid return 0, else return 1.
  */
-int main(int argc, char const *argv[]) {
+int start(int argc, char const *argv[]) {
   // Notice! the first arg from the terminal is
   // the .out file this info doesn't metter
   // to us so we initialize the args to not include

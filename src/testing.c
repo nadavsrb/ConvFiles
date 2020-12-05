@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "ex2.c"
 
-#define NUM_TESTS 54
+#define NUM_TESTS 72
 #define MAX_ARGS 6
 
 void compare_two_binary_files(const char *firstFile, const char *secondFile);
@@ -65,10 +65,28 @@ int main() {
     {"ex2.out", "myTests/unix_t2_keep.txt", "result/t2/unix/mac_t2_keep-copy.txt", "-unix", "-mac", "-keep"},
     {"ex2.out", "myTests/unix_t2_keep.txt", "result/t2/unix/mac_t2_swap-copy.txt", "-unix", "-mac", "-swap"},
     {"ex2.out", "myTests/unix_t2_keep.txt", "result/t2/unix/unix_t2_keep-copy.txt", "-unix", "-unix", "-keep"},
-    {"ex2.out", "myTests/unix_t2_keep.txt", "result/t2/unix/unix_t2_swap-copy.txt", "-unix", "-unix", "-swap"}
+    {"ex2.out", "myTests/unix_t2_keep.txt", "result/t2/unix/unix_t2_swap-copy.txt", "-unix", "-unix", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/win/t3-copy.txt", "-win", "-win", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/win/t3_swap-copy.txt", "-win", "-win", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/win/t3-copy.txt", "-win", "-mac", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/win/t3_swap-copy.txt", "-win", "-mac", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/win/t3-copy.txt", "-win", "-unix", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/win/t3_swap-copy.txt", "-win", "-unix", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/mac/t3-copy.txt", "-mac", "-win", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/mac/t3_swap-copy.txt", "-mac", "-win", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/mac/t3-copy.txt", "-mac", "-mac", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/mac/t3_swap-copy.txt", "-mac", "-mac", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/mac/t3-copy.txt", "-mac", "-unix", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/mac/t3_swap-copy.txt", "-mac", "-unix", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/unix/t3-copy.txt", "-unix", "-win", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/unix/t3_swap-copy.txt", "-unix", "-win", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/unix/t3-copy.txt", "-unix", "-mac", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/unix/t3_swap-copy.txt", "-unix", "-mac", "-swap"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/unix/t3-copy.txt", "-unix", "-unix", "-keep"},
+    {"ex2.out", "myTests/t3.txt", "result/t3/unix/t3_swap-copy.txt", "-unix", "-unix", "-swap"}
     };
 
-    int argc[] = {6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6};
+    int argc[] = {6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6};
     char const *result[] = {
     "testingFiles/win_input-utf-16_keep.txt",
     "testingFiles/win_input-utf-16_swap.txt",
@@ -123,7 +141,25 @@ int main() {
     "myTests/mac_t2_keep.txt",
     "myTests/mac_t2_swap.txt",
     "myTests/unix_t2_keep.txt",
-    "myTests/unix_t2_swap.txt"
+    "myTests/unix_t2_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
+    "myTests/t3.txt",
+    "myTests/t3_swap.txt",
     };
 
     for(int i = 0; i < NUM_TESTS; ++i){
