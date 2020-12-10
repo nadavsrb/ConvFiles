@@ -552,6 +552,9 @@ void createFileFromFile(const char *inFile, const char *outFile,
 
   // open / creates the dest file.
   FILE *out = fopen(outFile, "wb"); // w for write, b for binary.
+  if (out == NULL) {               // if dest has problem.
+    return;
+  }
 
   // we would keep handle chars
   // until we won't have any left and we would
